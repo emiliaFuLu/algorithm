@@ -1,4 +1,4 @@
-package com.fl.LinkedList;
+package fl.LinkedList;
 
 /**
  * Reverse

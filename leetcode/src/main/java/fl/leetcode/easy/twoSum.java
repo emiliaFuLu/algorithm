@@ -1,6 +1,8 @@
-package com.fl.leetcode.easy;
+package fl.leetcode.easy;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * twoSum
@@ -12,7 +14,7 @@ import java.util.*;
 public class twoSum {
 
     public static void main(String[] args) {
-        var nums = new int[]{3, 3};
+        int[] nums = new int[]{3, 3};
         int[] list = twoSum(nums, 6);
         System.out.println(Arrays.toString(list));
     }
@@ -24,7 +26,7 @@ public class twoSum {
 
         for (int i = 1; i < nums.length; i++) {
 
-            var num = target - nums[i];
+            int num = target - nums[i];
             Integer exist = map.get(num);
             if (exist != null) {
                 in = new int[]{map.get(num), i};

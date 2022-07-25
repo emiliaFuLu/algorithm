@@ -1,4 +1,4 @@
-package com.fl.Array;
+package fl.Array;
 
 /**
  * array

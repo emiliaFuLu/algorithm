@@ -1,4 +1,4 @@
-package com.fl.leetcode.easy;
+package fl.leetcode.easy;
 
 /**
  * TwoAdd
