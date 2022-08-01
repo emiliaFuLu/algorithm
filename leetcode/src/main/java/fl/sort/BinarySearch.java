@@ -14,9 +14,21 @@ public class BinarySearch {
 //        int i = binarySearch(arr, 3);
 //        System.out.println(i);
 
-        int[] arr = new int[]{1, 3, 5, 7, 9};
-        int binary = binary(arr, 0, arr.length - 1, 9);
-        System.out.println(binary);
+//        int[] arr = new int[]{1, 3, 5, 7, 9};
+//        int binary = binary(arr, 0, arr.length - 1, 9);
+//        System.out.println(binary);
+
+//        int[] arr = new int[]{3, 3, 3, 5, 7, 9};
+//        int i = binaryFirst(arr, 3);
+//        System.out.println(i);
+
+//        int[] arr = new int[]{1, 3, 5, 7, 9};
+//        int binary = binary(arr, 0, arr.length - 1, 9);
+//        System.out.println(binary);
+
+        int[] arr = new int[]{3, 3, 3, 5, 7, 9};
+        int i = binaryFirstGreat(arr, 3);
+        System.out.println(i);
     }
 
     // 正常的二分法
@@ -27,7 +39,7 @@ public class BinarySearch {
         int low = 0;
         int high = arr.length - 1;
 
-        while (low <= high) {
+        while (low < high) {
             int mid = low + ((high - low) >> 1);
             if (arr[mid] == target) {
                 return mid;
@@ -57,4 +69,80 @@ public class BinarySearch {
         }
     }
 
+    // 第一个匹配的元素
+    public static int binaryFirst(int[] arr, int target) {
+        if (arr.length == 0) {
+            return -1;
+        }
+        int low = 0;
+        int high = arr.length - 1;
+
+        while (low <= high) {
+            int mid = low + ((high - low) >> 1);
+            if (arr[mid] > target) {
+                high = mid - 1;
+            } else if (arr[mid] < target) {
+                low = mid + 1;
+            } else {
+                if (mid == 0 || arr[high = mid - 1] != target) {
+                    return mid;
+                }
+            }
+        }
+
+        return -1;
+    }
+
+    // 最后一个匹配的元素
+    public static int binaryLast(int[] arr, int target) {
+        if (arr.length == 0) {
+            return -1;
+        }
+
+        int low = 0;
+        int high = arr.length - 1;
+
+        while (low <= high) {
+            int mid = low + ((high - low) >> 1);
+            if (arr[mid] > target) {
+                high = mid - 1;
+            } else if (arr[mid] < target) {
+                low = mid + 1;
+            } else {
+                if (mid == arr.length - 1 || arr[low = mid + 1] > target) {
+                    return mid;
+                }
+            }
+        }
+
+        return -1;
+    }
+
+    // 第一个大于给定值的
+    public static int binaryFirstGreat(int[] arr, int target) {
+        if (arr.length == 0) {
+            return -1;
+        }
+
+        int low = 0;
+        int high = arr.length - 1;
+
+        while (low <= high) {
+            int mid = low + ((high - low) >> 1);
+            if (arr[mid] > target) {
+                high = mid - 1;
+            } else if (arr[mid] < target) {
+                low = mid + 1;
+            } else {
+                if (mid == 0 || arr[mid + 1] > target) {
+                    return mid + 1;
+                } else {
+                    low = mid + 1;
+                }
+            }
+        }
+
+        return -1;
+    }
+    // 最后一个小于给定值的
 }
