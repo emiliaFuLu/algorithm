@@ -26,8 +26,12 @@ public class BinarySearch {
 //        int binary = binary(arr, 0, arr.length - 1, 9);
 //        System.out.println(binary);
 
-        int[] arr = new int[]{3, 3, 3, 5, 7, 9};
-        int i = binaryFirstGreat(arr, 3);
+//        int[] arr = new int[]{3, 3, 3, 5, 7, 9, 9};
+//        int i = binaryFirstGreat(arr, 3);
+//        System.out.println(i);
+
+        int[] arr = new int[]{3, 3, 3, 5, 7, 9, 9};
+        int i = binaryFirstLess(arr, 9);
         System.out.println(i);
     }
 
@@ -118,7 +122,7 @@ public class BinarySearch {
         return -1;
     }
 
-    // 第一个大于给定值的
+    // 第一个大于等于给定值的
     public static int binaryFirstGreat(int[] arr, int target) {
         if (arr.length == 0) {
             return -1;
@@ -129,20 +133,42 @@ public class BinarySearch {
 
         while (low <= high) {
             int mid = low + ((high - low) >> 1);
-            if (arr[mid] > target) {
-                high = mid - 1;
-            } else if (arr[mid] < target) {
-                low = mid + 1;
-            } else {
-                if (mid == 0 || arr[mid + 1] > target) {
-                    return mid + 1;
+            if (arr[mid] >= target) {
+                if (mid == 0 || arr[mid - 1] < target) {
+                    return mid;
                 } else {
-                    low = mid + 1;
+                    high = mid - 1;
                 }
+            } else {
+                low = mid + 1;
             }
         }
 
         return -1;
     }
-    // 最后一个小于给定值的
+
+    // 最后一个小于等于给定值的
+    public static int binaryFirstLess(int[] arr, int target) {
+        if (arr.length == 0) {
+            return -1;
+        }
+
+        int low = 0;
+        int high = arr.length - 1;
+
+        while (low <= high) {
+            int mid = low + ((high - low) >> 1);
+            if (arr[mid] <= target) {
+                if (mid == arr.length - 1 || arr[mid + 1] > target) {
+                    return mid;
+                } else {
+                    low = mid + 1;
+                }
+            } else {
+                high = mid - 1;
+            }
+        }
+
+        return -1;
+    }
 }
